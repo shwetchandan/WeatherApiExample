@@ -4,7 +4,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
+    id("com.google.dagger.hilt.android") version "2.56"
     id("com.google.devtools.ksp") version "2.0.0-1.0.22"
 }
 
@@ -83,4 +83,17 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
+
+    implementation("com.google.dagger:hilt-android:2.56")
+    ksp("com.google.dagger:hilt-compiler:2.56")
+
+    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
+ //   implementation("com.squareup:javapoet:1.13.0")
 }
+
+/*
+configurations.all {
+    resolutionStrategy {
+        force("com.squareup:javapoet:1.13.0")
+    }
+}*/

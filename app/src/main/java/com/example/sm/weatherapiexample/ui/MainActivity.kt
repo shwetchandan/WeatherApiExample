@@ -1,26 +1,32 @@
-package com.example.sm.weatherapiexample
+package com.example.sm.weatherapiexample.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.Lifecycle
 import com.example.sm.weatherapiexample.databinding.ActivityMainBinding
+import com.example.sm.weatherapiexample.viewmodel.UiState
+import com.example.sm.weatherapiexample.viewmodel.WeatherViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: WeatherViemodel by viewModels()
+
+    private val viewModel: WeatherViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -51,10 +57,13 @@ class MainActivity : AppCompatActivity() {
                             binding.tvCityName.text = weather.name
                             binding.tvTemp.text = "${weather.main.temp}°C"
                             binding.tvDescription.text = weather.weather[0].description
-                            binding.tvHumidity.text = "Humidity: ${weather.main.humidity}%"
-                            binding.tvSunrise.text =
-                                "Sunrise: ${weather.sys.sunrise.toReadableTime()}"
-                            binding.tvSunset.text = "Sunset: ${weather.sys.sunset.toReadableTime()}"
+                            binding.tvFeelsLike.text = "Feels like ${weather.main.feels_like}°C"
+                            binding.tvHumidity.text = "${weather.main.humidity}%"
+                            binding.tvWind.text = "${weather.wind.speed} m/s"
+                            binding.tvPressure.text = "${weather.main.pressure} hPa"
+                            binding.tvVisibility.text = "${weather.visibility / 1000} km"
+                            binding.tvSunrise.text = weather.sys.sunrise.toReadableTime()
+                            binding.tvSunset.text = weather.sys.sunset.toReadableTime()
                         }
 
                         is UiState.Error -> {
