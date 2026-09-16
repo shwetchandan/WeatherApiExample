@@ -49,4 +49,11 @@ class TimeUtilsTest {
 
         assertEquals(expected, result)
     }
+
+    @Test
+    fun ciPipelineTest() {
+        val result = 10 + 20
+
+        assertEquals(30, result)
+    }
 }
