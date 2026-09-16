@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="weather_background">#F7F9FB</color>
+    <color name="weather_text_primary">#1A1C1E</color>
+    <color name="weather_text_secondary">#5F6368</color>
+    <color name="weather_accent">#4A90D9</color>
+    <color name="weather_error_background">#FDECEA</color>
+    <color name="weather_error_text">#B3261E</color>
+    <color name="weather_card_background">#FFFFFF</color>
 </resources>

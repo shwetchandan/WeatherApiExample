@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">weatherapiexample</string>
+    <string name="weather">Weather</string>
+    <string name="live_conditions_powered_by_openweathermap">Live conditions, powered by OpenWeatherMap</string>
+    <string name="refresh_weather">Refresh weather</string>
+
+    <string name="ahmedabad">Ahmedabad</string>
+    <string name="default_temperature">--°C</string>
+    <string name="weather_condition">Weather condition</string>
+    <string name="feels_like_default">Feels like --°C</string>
+
+    <string name="default_percentage">--%%</string>
+    <string name="default_wind">-- m/s</string>
+    <string name="default_pressure">-- hPa</string>
+    <string name="default_visibility">-- km</string>
+    <string name="default_time">--</string>
+
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="visibility">Visibility</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+
+    <string name="default_error">Something went wrong. Please try again.</string>
+
+    <string name="temperature_format">%1$.1f°C</string>
+    <string name="feels_like_format">Feels like %1$.1f°C</string>
+    <string name="humidity_format">%1$d%%</string>
+    <string name="wind_format">%1$.1f m/s</string>
+    <string name="pressure_format">%1$d hPa</string>
+    <string name="visibility_format">%1$d km</string>
+
 </resources>

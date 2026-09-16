@@ -7,6 +7,7 @@ import com.example.sm.weatherapiexample.BuildConfig
 import com.example.sm.weatherapiexample.data.WeatherResponse
 import com.example.sm.weatherapiexample.data.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,15 +22,17 @@ sealed class UiState {
 }
 
 @HiltViewModel
-class WeatherViewModel @Inject constructor(private val repository: WeatherRepository) :
-    ViewModel() {
+class WeatherViewModel @Inject constructor(
+    private val repository: WeatherRepository,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ViewModel() {
 
     private val uiState = MutableStateFlow<UiState>(UiState.Loading)
 
     val isUistate: StateFlow<UiState> = uiState.asStateFlow()
 
     fun loadWeather() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             uiState.value = UiState.Loading
 
             val city = "Ahmedabad"
@@ -39,7 +42,6 @@ class WeatherViewModel @Inject constructor(private val repository: WeatherReposi
                 uiState.value = UiState.Success(weather)
             }.onFailure { error ->
                 Log.e("WeatherApp", "Error: ${error.message}")
-
                 uiState.value = UiState.Error(error.localizedMessage ?: "Unknown Error")
             }
         }

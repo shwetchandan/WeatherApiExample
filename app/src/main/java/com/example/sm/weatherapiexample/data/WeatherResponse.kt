@@ -2,7 +2,7 @@ package com.example.sm.weatherapiexample.data
 
 
 data class WeatherResponse(
-    val coord: coord,
+    val coord: Coord,
     val weather: List<Weather>,
     val base: String,
     val main: Main,
@@ -17,7 +17,7 @@ data class WeatherResponse(
     val cod: Int
 )
 
-data class coord(val longitude: Double, val latitude: Double)
+data class Coord(val longitude: Double, val latitude: Double)
 
 data class Weather(
     val id: Int,

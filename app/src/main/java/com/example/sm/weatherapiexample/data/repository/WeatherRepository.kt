@@ -53,7 +53,7 @@ class WeatherRepository @Inject constructor(
 
 fun WeatherEntity.toWeatherResponse(): WeatherResponse {
     return WeatherResponse(
-        coord = coord(0.0, 0.0),
+        coord = Coord(0.0, 0.0),
         weather = listOf(Weather(id = 0, main = "", description = description, icon = "")),
         base = "",
         main = Main(

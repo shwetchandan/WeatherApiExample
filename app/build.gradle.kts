@@ -56,7 +56,11 @@ android {
         viewBinding = true
         buildConfig = true
     }
-
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
 
 }
 
@@ -89,6 +93,24 @@ dependencies {
 
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
  //   implementation("com.squareup:javapoet:1.13.0")
+
+    // ===== TESTING DEPENDENCIES =====
+
+    // Mockito
+    testImplementation("org.mockito:mockito-core:5.5.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+
+    // Coroutines testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+
+    // LiveData/StateFlow testing
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
+    // MockWebServer (Retrofit API test)
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+
+    // Truth assertion library
+    testImplementation("com.google.truth:truth:1.4.4")
 }
 
 /*
