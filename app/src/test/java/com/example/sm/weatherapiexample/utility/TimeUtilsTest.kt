@@ -54,6 +54,6 @@ class TimeUtilsTest {
     fun ciPipelineTest() {
         val result = 10 + 20
 
-        assertEquals(31, result)
+        assertEquals(30, result)
     }
 }
