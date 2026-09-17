@@ -10,7 +10,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected val binding: VB
         get() =
             vbbinding
-                ?: throw IllegalStateException("Binding is not initialized")
+                ?: error("Binding is not initialized")
 
     abstract fun inflateBinding(layoutInflater: LayoutInflater): VB
 

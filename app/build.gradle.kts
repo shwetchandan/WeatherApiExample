@@ -7,6 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.56"
     id("com.google.devtools.ksp") version "2.0.0-1.0.22"
     id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 val localProperties = Properties()

@@ -12,6 +12,7 @@ import com.example.sm.weatherapiexample.data.local.WeatherDao
 import com.example.sm.weatherapiexample.data.local.WeatherEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
+import java.io.IOException
 import javax.inject.Inject
 
 class WeatherRepository
@@ -31,7 +32,7 @@ class WeatherRepository
                     WeatherEntity(
                         cityName = response.name,
                         temperature = response.main.temp,
-                        feelsLike = response.main.feels_like,
+                        feelsLike = response.main.feelsLike,
                         description = response.weather.firstOrNull()?.description ?: "",
                         humidity = response.main.humidity,
                         pressure = response.main.pressure,
@@ -44,7 +45,7 @@ class WeatherRepository
 
                 weatherDao.insertWeather(entity)
                 Result.success(response)
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 Result.failure(e)
             }
 
@@ -61,13 +62,13 @@ fun WeatherEntity.toWeatherResponse(): WeatherResponse =
         main =
             Main(
                 temp = temperature,
-                feels_like = feelsLike,
-                temp_min = temperature,
-                temp_max = temperature,
+                feelsLike = feelsLike,
+                tempMin = temperature,
+                tempMax = temperature,
                 pressure = pressure,
                 humidity = humidity,
-                sea_level = 0,
-                grnd_level = 0,
+                seaLevel = 0,
+                grndLevel = 0,
             ),
         visibility = visibility,
         wind = Wind(speed = windSpeed, deg = 0, gust = 0.0),

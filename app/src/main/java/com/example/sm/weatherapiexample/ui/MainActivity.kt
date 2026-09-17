@@ -18,11 +18,14 @@ import com.example.sm.weatherapiexample.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+private const val METERS_IN_KILOMETER = 1000
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val viewModel: WeatherViewModel by viewModels()
 
-    override fun inflateBinding(layoutInflater: LayoutInflater): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+
+    override fun inflateBinding(layoutInflater: LayoutInflater): ActivityMainBinding =
+        ActivityMainBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +80,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             tvFeelsLike.text =
                 getString(
                     R.string.feels_like_format,
-                    weather.main.feels_like,
+                    weather.main.feelsLike,
                 )
             tvHumidity.text =
                 getString(
@@ -97,7 +100,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             tvVisibility.text =
                 getString(
                     R.string.visibility_format,
-                    weather.visibility / 1000,
+                    weather.visibility / METERS_IN_KILOMETER,
                 )
             tvSunrise.text = weather.sys.sunrise.toReadableTime()
             tvSunset.text = weather.sys.sunset.toReadableTime()

@@ -1,5 +1,7 @@
 package com.example.sm.weatherapiexample.data
 
+import com.google.gson.annotations.SerializedName
+
 data class WeatherResponse(
     val coord: Coord,
     val weather: List<Weather>,
@@ -28,16 +30,6 @@ data class Weather(
     val icon: String,
 )
 
-data class Main(
-    val temp: Double,
-    val feels_like: Double,
-    val temp_min: Double,
-    val temp_max: Double,
-    val pressure: Int,
-    val humidity: Int,
-    val sea_level: Int,
-    val grnd_level: Int,
-)
 
 data class Wind(
     val speed: Double,
@@ -53,4 +45,26 @@ data class Sys(
     val country: String,
     val sunrise: Long,
     val sunset: Long,
+)
+
+data class Main(
+    val temp: Double,
+
+    @SerializedName("feels_like")
+    val feelsLike: Double,
+
+    @SerializedName("temp_min")
+    val tempMin: Double,
+
+    @SerializedName("temp_max")
+    val tempMax: Double,
+
+    val pressure: Int,
+    val humidity: Int,
+
+    @SerializedName("sea_level")
+    val seaLevel: Int,
+
+    @SerializedName("grnd_level")
+    val grndLevel: Int,
 )
