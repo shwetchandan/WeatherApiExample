@@ -140,13 +140,13 @@ class WeatherViewModelTest {
             main =
                 Main(
                     temp = 298.15,
-                    feels_like = 300.0,
-                    temp_min = 297.0,
-                    temp_max = 299.0,
+                    feelsLike = 300.0,
+                    tempMin = 297.0,
+                    tempMax = 299.0,
                     pressure = 1013,
                     humidity = 60,
-                    sea_level = 1013,
-                    grnd_level = 1013,
+                    seaLevel = 1013,
+                    grndLevel = 1013,
                 ),
             visibility = 10000,
             wind = Wind(speed = 5.5, deg = 180, gust = 7.0),
