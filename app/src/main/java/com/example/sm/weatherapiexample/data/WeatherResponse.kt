@@ -1,6 +1,5 @@
 package com.example.sm.weatherapiexample.data
 
-
 data class WeatherResponse(
     val coord: Coord,
     val weather: List<Weather>,
@@ -14,16 +13,19 @@ data class WeatherResponse(
     val timezone: Int,
     val id: Int,
     val name: String,
-    val cod: Int
+    val cod: Int,
 )
 
-data class Coord(val longitude: Double, val latitude: Double)
+data class Coord(
+    val longitude: Double,
+    val latitude: Double,
+)
 
 data class Weather(
     val id: Int,
     val main: String,
     val description: String,
-    val icon: String
+    val icon: String,
 )
 
 data class Main(
@@ -34,21 +36,21 @@ data class Main(
     val pressure: Int,
     val humidity: Int,
     val sea_level: Int,
-    val grnd_level: Int
+    val grnd_level: Int,
 )
 
 data class Wind(
     val speed: Double,
     val deg: Int,
-    val gust: Double
+    val gust: Double,
 )
 
 data class Clouds(
-    val all: Int
+    val all: Int,
 )
 
 data class Sys(
     val country: String,
     val sunrise: Long,
-    val sunset: Long
+    val sunset: Long,
 )

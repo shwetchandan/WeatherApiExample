@@ -26,6 +26,9 @@ jobs:
       - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
 
+      - name: Run Ktlint
+        run: ./gradlew ktlintCheck
+
       - name: Build Release AAB
         run: ./gradlew bundleRelease
 

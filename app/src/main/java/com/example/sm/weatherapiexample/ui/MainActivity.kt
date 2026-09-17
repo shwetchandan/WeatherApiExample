@@ -20,11 +20,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-
     private val viewModel: WeatherViewModel by viewModels()
-    override fun inflateBinding(layoutInflater: LayoutInflater): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
-    }
+
+    override fun inflateBinding(layoutInflater: LayoutInflater): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,31 +64,41 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun setData(weather: WeatherResponse) {
         with(binding) {
             tvCityName.text = weather.name
-            tvTemp.text = getString(
-                R.string.temperature_format,
-                weather.main.temp
-            )
-            tvDescription.text = weather.weather.firstOrNull()?.description.orEmpty()
-            tvFeelsLike.text = getString(
-                R.string.feels_like_format,
-                weather.main.feels_like
-            )
-            tvHumidity.text = getString(
-                R.string.humidity_format,
-                weather.main.humidity
-            )
-            tvWind.text = getString(
-                R.string.wind_format,
-                weather.wind.speed
-            )
-            tvPressure.text = getString(
-                R.string.pressure_format,
-                weather.main.pressure
-            )
-            tvVisibility.text = getString(
-                R.string.visibility_format,
-                weather.visibility / 1000
-            )
+            tvTemp.text =
+                getString(
+                    R.string.temperature_format,
+                    weather.main.temp,
+                )
+            tvDescription.text =
+                weather.weather
+                    .firstOrNull()
+                    ?.description
+                    .orEmpty()
+            tvFeelsLike.text =
+                getString(
+                    R.string.feels_like_format,
+                    weather.main.feels_like,
+                )
+            tvHumidity.text =
+                getString(
+                    R.string.humidity_format,
+                    weather.main.humidity,
+                )
+            tvWind.text =
+                getString(
+                    R.string.wind_format,
+                    weather.wind.speed,
+                )
+            tvPressure.text =
+                getString(
+                    R.string.pressure_format,
+                    weather.main.pressure,
+                )
+            tvVisibility.text =
+                getString(
+                    R.string.visibility_format,
+                    weather.visibility / 1000,
+                )
             tvSunrise.text = weather.sys.sunrise.toReadableTime()
             tvSunset.text = weather.sys.sunset.toReadableTime()
         }
@@ -100,6 +108,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.progressBar.isVisible = state is UiState.Loading
         binding.tvError.isVisible = state is UiState.Error
     }
-
-
 }

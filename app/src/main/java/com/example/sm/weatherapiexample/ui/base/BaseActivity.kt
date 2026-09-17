@@ -8,8 +8,9 @@ import androidx.viewbinding.ViewBinding
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     private var vbbinding: VB? = null
     protected val binding: VB
-        get() = vbbinding
-            ?: throw IllegalStateException("Binding is not initialized")
+        get() =
+            vbbinding
+                ?: throw IllegalStateException("Binding is not initialized")
 
     abstract fun inflateBinding(layoutInflater: LayoutInflater): VB
 

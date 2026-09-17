@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.dagger.hilt.android") version "2.56"
     id("com.google.devtools.ksp") version "2.0.0-1.0.22"
+    id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
 }
 
 val localProperties = Properties()
@@ -31,7 +32,7 @@ android {
         buildConfigField(
             "String",
             "WEATHER_API_KEY",
-            "\"${localProperties.getProperty("WEATHER_API_KEY", "")}\""
+            "\"${localProperties.getProperty("WEATHER_API_KEY", "")}\"",
         )
     }
 
@@ -40,7 +41,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -61,7 +62,6 @@ android {
             isReturnDefaultValues = true
         }
     }
-
 }
 
 dependencies {
@@ -92,7 +92,7 @@ dependencies {
     ksp("com.google.dagger:hilt-compiler:2.56")
 
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
- //   implementation("com.squareup:javapoet:1.13.0")
+    //   implementation("com.squareup:javapoet:1.13.0")
 
     // ===== TESTING DEPENDENCIES =====
 

@@ -17,33 +17,41 @@ import javax.inject.Inject
 
 sealed class UiState {
     object Loading : UiState()
-    data class Success(val weather: WeatherResponse) : UiState()
-    data class Error(val message: String) : UiState()
+
+    data class Success(
+        val weather: WeatherResponse,
+    ) : UiState()
+
+    data class Error(
+        val message: String,
+    ) : UiState()
 }
 
 @HiltViewModel
-class WeatherViewModel @Inject constructor(
-    private val repository: WeatherRepository,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : ViewModel() {
+class WeatherViewModel
+    @Inject
+    constructor(
+        private val repository: WeatherRepository,
+        private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    ) : ViewModel() {
+        private val uiState = MutableStateFlow<UiState>(UiState.Loading)
 
-    private val uiState = MutableStateFlow<UiState>(UiState.Loading)
+        val isUistate: StateFlow<UiState> = uiState.asStateFlow()
 
-    val isUistate: StateFlow<UiState> = uiState.asStateFlow()
+        fun loadWeather() {
+            viewModelScope.launch(ioDispatcher) {
+                uiState.value = UiState.Loading
 
-    fun loadWeather() {
-        viewModelScope.launch(ioDispatcher) {
-            uiState.value = UiState.Loading
+                val city = "Ahmedabad"
+                val result = repository.fetchWeather(city, BuildConfig.WEATHER_API_KEY)
 
-            val city = "Ahmedabad"
-            val result = repository.fetchWeather(city, BuildConfig.WEATHER_API_KEY)
-
-            result.onSuccess { weather ->
-                uiState.value = UiState.Success(weather)
-            }.onFailure { error ->
-                Log.e("WeatherApp", "Error: ${error.message}")
-                uiState.value = UiState.Error(error.localizedMessage ?: "Unknown Error")
+                result
+                    .onSuccess { weather ->
+                        uiState.value = UiState.Success(weather)
+                    }.onFailure { error ->
+                        Log.e("WeatherApp", "Error: ${error.message}")
+                        uiState.value = UiState.Error(error.localizedMessage ?: "Unknown Error")
+                    }
             }
         }
     }
-}

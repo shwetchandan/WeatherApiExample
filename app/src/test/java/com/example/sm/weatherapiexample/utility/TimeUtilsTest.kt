@@ -9,7 +9,6 @@ import java.util.Date
 import java.util.Locale
 
 class TimeUtilsTest {
-
     @Test
     fun toReadableTime_returnsCorrectFormat() {
         val epochSeconds = 1700000000L
@@ -19,7 +18,7 @@ class TimeUtilsTest {
         assertTrue(result.isNotEmpty())
         assertTrue(
             "Format should be HH:mm AM/PM, got: $result",
-            result.matches(Regex("\\d{2}:\\d{2} (AM|PM)"))
+            result.matches(Regex("\\d{2}:\\d{2} (AM|PM)")),
         )
     }
 
@@ -42,8 +41,9 @@ class TimeUtilsTest {
     @Test
     fun toReadableTime_matchesManualCalculation() {
         val epochSeconds = 1700000000L
-        val expected = SimpleDateFormat("hh:mm a", Locale.getDefault())
-            .format(Date(epochSeconds * 1000))
+        val expected =
+            SimpleDateFormat("hh:mm a", Locale.getDefault())
+                .format(Date(epochSeconds * 1000))
 
         val result = epochSeconds.toReadableTime()
 
