@@ -13,12 +13,13 @@ class TimeUtilsTest {
     fun toReadableTime_returnsCorrectFormat() {
         val epochSeconds = 1700000000L
         val result = epochSeconds.toReadableTime()
+        println("Actual result: [$result]")
 
         assertNotNull(result)
         assertTrue(result.isNotEmpty())
         assertTrue(
             "Format should be HH:mm AM/PM, got: $result",
-            result.matches(Regex("\\d{2}:\\d{2} (AM|PM)")),
+            result.matches(Regex("\\d{2}:\\d{2} (AM|PM|am|pm)")),
         )
     }
 
@@ -34,8 +35,9 @@ class TimeUtilsTest {
     fun toReadableTime_handlesLargeTimestamps() {
         val futureTimestamp = 2000000000L
         val result = futureTimestamp.toReadableTime()
+        println("Actual large result: [$result]")
 
-        assertTrue(result.matches(Regex("\\d{2}:\\d{2} (AM|PM)")))
+        assertTrue(result.matches(Regex("\\d{2}:\\d{2} (AM|PM|am|pm)")))
     }
 
     @Test

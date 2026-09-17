@@ -114,6 +114,11 @@ dependencies {
     testImplementation("com.google.truth:truth:1.4.4")
 }
 
+detekt {
+    buildUponDefaultConfig = true
+    config.setFrom(files("$rootDir/detekt.yml"))
+}
+
 /*
 configurations.all {
     resolutionStrategy {
